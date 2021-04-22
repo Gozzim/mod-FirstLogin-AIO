@@ -67,7 +67,7 @@ public:
     }
 
 
-    void createRandomPet(Player* player, uint32 randName) {
+    void createRandomPet(Player* player) {
         uint32 entry;
         std::string new_name;
         const uint32 pets[205] = {1513, 1554, 4861, 10357, 1186, 17345, 17348, 2354, 1130, 1815, 14280, 17661, 26643, 17053, 17034, 27244, 20109, 7099, 23051, 14343, 19429, 26369, 28004, 29044, 23945, 24747, 32481, 119, 345, 3098, 547, 16117, 2966, 4512, 4511, 4514, 7376, 1109, 5429, 2829, 2931,
@@ -79,9 +79,9 @@ public:
         entry = pets[urand(0, 204)];
 
         // Generate new name for pet
-        if (randName == 1)
+        if (FLoginPetName == 1)
             new_name = randPetName();
-        if (randName == 2)
+        if (FLoginPetName == 2)
             new_name = sObjectMgr->GeneratePetName(entry);
 
         Pet* pet = player->CreateTamedPetFrom(entry, 13481);
