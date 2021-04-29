@@ -8,24 +8,28 @@
 #   FirstLogin.Enable
 #       Description: Enable First Login Scripts
 #       Default: 1 (enabled)
+#                0 (disabled)
 
 FirstLogin.Enable = 1
 
 #   FirstLogin.Announce
 #       Description: Announce Module
 #       Default: 1 (enabled)
+#                0 (disabled)
 
 FirstLogin.Announce = 1
 
 #   FirstLogin.StableSlots
 #       Description: New players of class Hunter have all StableSlots
 #       Default: 0 (disabled)
+#                1 (enabled)
 
 FirstLogin.StableSlots = 0
 
 #   FirstLogin.Pet
 #       Description: New players of class Hunter gain a random pet
 #       Default: 1 (enabled)
+#                0 (disabled)
 
 FirstLogin.Pet = 1
 
@@ -40,6 +44,7 @@ FirstLogin.RandPetName = 0
 #   FirstLogin.BankSlots
 #       Description: New players have all BankSlots
 #       Default: 0 (disabled)
+#                1 (enabled)
 
 FirstLogin.BankSlots = 0
 
@@ -53,5 +58,6 @@ FirstLogin.BagID = 0
 #   FirstLogin.DualSpec
 #       Description: New players have DualSpec
 #       Default: 0 (disabled)
+#                1 (enabled)
 
 FirstLogin.DualSpec = 0

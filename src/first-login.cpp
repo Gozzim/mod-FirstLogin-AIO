@@ -10,14 +10,14 @@
 #include "SharedDefines.h"
 #include "Config.h"
 
-bool FLoginEnable;
-bool FLoginAnnounce;
-bool FLoginStable;
-bool FLoginPet;
-uint32 FLoginPetName;
-bool FLoginBank;
-uint32 FLoginBagID;
-bool FLoginDualSpec;
+static bool FLoginEnable;
+static bool FLoginAnnounce;
+static bool FLoginStable;
+static bool FLoginPet;
+static uint32 FLoginPetName;
+static bool FLoginBank;
+static uint32 FLoginBagID;
+static bool FLoginDualSpec;
 
 const std::string vowels = "aeiou";
 const std::string consonants = "bcdfghjklmnpqrstvw";
@@ -25,7 +25,8 @@ const std::string consonants = "bcdfghjklmnpqrstvw";
 /*
  * TODO:
  *  - Rework name generation
- *  - Add learn all spells option -- maybe rather on char creation?
+ *  - Fill sql files for name generation
+ *  - Add learn all spells option (maybe rather on char creation?)
  */
 
 class FirstLoginBeforeConfigLoad : public WorldScript {
@@ -142,7 +143,7 @@ public:
             if (FLoginBank) {
                 player->SetBankBagSlotCount(7);
                 if (FLoginBagID > 0)
-                    for (uint16 i = BANK_SLOT_ITEM_START; i < BANK_SLOT_ITEM_END; i++)
+                    for (uint16 i = BANK_SLOT_BAG_START; i < BANK_SLOT_BAG_END; i++)
                         player->EquipNewItem(i, FLoginBagID, true);
             }
 
@@ -155,5 +156,6 @@ public:
 };
 
 void AddFirstLoginScripts() {
+    new FirstLoginBeforeConfigLoad();
     new first_login_scripts();
 }
