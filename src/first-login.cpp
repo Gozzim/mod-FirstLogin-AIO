@@ -92,13 +92,13 @@ public:
         float px, py, pz;
         player->GetClosePoint(px, py, pz, pet->GetObjectSize(), PET_FOLLOW_DIST, pet->GetFollowAngle());
         if (!pet->IsPositionValid()) {
-            sLog->outError("Pet (guidlow %d, entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetGUIDLow(), pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
+            sLog->outError("Pet (entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
             delete pet;
             return;
         }
         pet->Relocate(px, py, pz, player->GetOrientation());
 
-        pet->AddUInt64Value(UNIT_FIELD_CREATEDBY, player->GetGUID());
+        pet->SetGuidValue(UNIT_FIELD_CREATEDBY, player->GetGUID());
         pet->SetUInt32Value(UNIT_FIELD_FACTIONTEMPLATE, player->getFaction());
         pet->SetUInt32Value(UNIT_FIELD_LEVEL, player->getLevel());
 

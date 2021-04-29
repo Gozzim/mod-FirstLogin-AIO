@@ -1,6 +1,7 @@
 # This is a module for  ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 ## Additional First Login Features
-Latest build status with azerothcore: [![core-build](https://github.com/Gozzim/mod-first-login/actions/workflows/core-build.yml/badge.svg)](https://github.com/Gozzim/mod-first-login)
+[![core-build](https://github.com/Gozzim/mod-first-login/actions/workflows/core-build.yml/badge.svg)](https://github.com/Gozzim/mod-first-login)
+[![CodeFactor](https://www.codefactor.io/repository/github/gozzim/mod-first-login/badge?s=342e4cd90c9ff0c396e11f2e63a9770e591d7227)](https://www.codefactor.io/repository/github/gozzim/mod-first-login)
 
 ## Description
 Module to enable various features for new players
@@ -26,12 +27,9 @@ Module to enable various features for new players
 ## Edit module configuration (optional)
 If you need to change the module configuration, go to your server configuration folder (where your worldserver or worldserver.exe is), copy first-login.conf.dist to first-login.conf and edit that new file.
 
-
 ## Credits
-Module for AzerothCore created by [Gozzim](https://github.com/Gozzim)
-
-#### Additional Credits
-AzerothCore: [repository](https://github.com/azerothcore) - [website](http://azerothcore.org/)
+- Module for AzerothCore created by [Gozzim](https://github.com/Gozzim)
+- AzerothCore: [repository](https://github.com/azerothcore) - [website](http://azerothcore.org/)
 
 ## License
 This code and content is released under the [GNU AGPL license](https://github.com/Gozzim/mod-first-login/blob/master/LICENSE).
