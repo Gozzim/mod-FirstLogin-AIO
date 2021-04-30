@@ -66,14 +66,14 @@ public:
 
     // Very basic implementation for testing purposes
     std::string randPetName() {
-        const int len = urand(4, 8);
+        const uint8 len = urand(4, 8);
         std::ostringstream new_name;
         std::string new_char;
-        for (int i = 1; i < len + 1; i++) {
+        for (uint8 i = 1; i < len + 1; i++) {
             if (i == 1) {
                 new_char = toupper(consonants[urand(0, consonants.length() - 1)]);
             } else if (i % 2 == 0 || i % 5 == 0) {
-                new_char = vowels[rand() % (vowels.length() - 1)];
+                new_char = vowels[urand(0, vowels.length() - 1)];
             } else {
                 new_char = consonants[urand(0, consonants.length() - 1)];
             }
