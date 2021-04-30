@@ -1,6 +1,7 @@
 //
 // Created by Gozzim on 20.04.2021.
 //
+#include "Player.h"
 #include "Pet.h"
 #include "ObjectMgr.h"
 #include "Creature.h"
