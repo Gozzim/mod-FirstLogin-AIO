@@ -20,9 +20,9 @@ FirstLogin.Enable = 1
 FirstLogin.Announce = 1
 
 #   FirstLogin.StableSlots
-#       Description: New players of class Hunter have all StableSlots
+#       Description: Starting StableSlots for hunters (0-4)
 #       Default: 0 (disabled)
-#                1 (enabled)
+#                1-4 (enabled)
 
 FirstLogin.StableSlots = 0
 
@@ -42,9 +42,9 @@ FirstLogin.Pet = 1
 FirstLogin.RandPetName = 0
 
 #   FirstLogin.BankSlots
-#       Description: New players have all BankSlots
+#       Description: Number of unlocked BankSlots for new players (0-7)
 #       Default: 0 (disabled)
-#                1 (enabled)
+#                1-7 (enabled)
 
 FirstLogin.BankSlots = 0
 

@@ -10,10 +10,10 @@ Module to enable various features for new players
 
 - Enable/Disable module
 - Announcement of enabled module on login
-- Enable hunters starting with all 4 stable slots
+- Set number of stable slots for hunters to start with
 - Enable hunters starting with a random pet
     - Different options for random name generation for hunter starting pets
-- Enable players starting with all bank slots
+- Set number of bank slots for new players
     - Different options for bags within those bank bag slots
 - Enable players starting with dual spec
 
