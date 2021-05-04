@@ -28,8 +28,8 @@ FirstLogin.StableSlots = 0
 
 #   FirstLogin.Pet
 #       Description: New players of class Hunter gain a random pet
-#       Default: 1 (enabled)
-#                0 (disabled)
+#       Default: 0 (disabled)
+#                1 (enabled)
 
 FirstLogin.Pet = 0
 
