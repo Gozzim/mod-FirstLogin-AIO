@@ -31,7 +31,7 @@ FirstLogin.StableSlots = 0
 #       Default: 1 (enabled)
 #                0 (disabled)
 
-FirstLogin.Pet = 1
+FirstLogin.Pet = 0
 
 #   FirstLogin.RandPetName
 #       Description: Set random Petname for generated pet

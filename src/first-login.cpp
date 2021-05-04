@@ -52,7 +52,7 @@ public:
         FLoginEnable = sConfigMgr->GetBoolDefault("FirstLogin.Enable", 1);
         FLoginAnnounce = sConfigMgr->GetBoolDefault("FirstLogin.Announce", 1);
         FLoginStable = sConfigMgr->GetIntDefault("FirstLogin.StableSlots", 0);
-        FLoginPet = sConfigMgr->GetBoolDefault("FirstLogin.Pet", 1);
+        FLoginPet = sConfigMgr->GetBoolDefault("FirstLogin.Pet", 0);
         FLoginPetName = sConfigMgr->GetIntDefault("FirstLogin.RandPetName", 0);
         FLoginBank = sConfigMgr->GetIntDefault("FirstLogin.BankSlots", 0);
         FLoginBagID = sConfigMgr->GetIntDefault("FirstLogin.BagID", 0);
