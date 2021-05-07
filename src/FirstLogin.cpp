@@ -23,8 +23,6 @@ enum HunterVars
     PET_MAX_HAPPINESS   = 1048000
 };
 
-static uint32 const hunterSpells[] = {883, 982, 1002, 1462, 2641, 6991, 13481, 48990};
-
 FirstLogin* FirstLogin::instance()
 {
     static FirstLogin instance;
@@ -32,16 +30,23 @@ FirstLogin* FirstLogin::instance()
 }
 
 // Very basic implementation for testing purposes
-std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen) {
+std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen)
+{
     uint16 const len = urand(minLen, maxLen);
     std::ostringstream newName;
     std::string nextChar;
-    for (uint8 i = 1; i < len + 1; i++) {
-        if (i == 1) {
+    for (uint8 i = 1; i < len + 1; i++)
+    {
+        if (i == 1)
+        {
             nextChar = toupper(_consonants[urand(0, _consonants.length() - 1)]);
-        } else if (i % 2 == 0 || i % 5 == 0) {
+        }
+        else if (i % 2 == 0 || i % 5 == 0)
+        {
             nextChar = _vowels[urand(0, _vowels.length() - 1)];
-        } else {
+        }
+        else
+        {
             nextChar = _consonants[urand(0, _consonants.length() - 1)];
         }
         newName << nextChar;
@@ -49,7 +54,8 @@ std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen) {
     return newName.str();
 }
 
-void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
+void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
+{
     uint32 entry;
     std::string newName;
     entry = _pets[urand(0, 204)];
@@ -61,13 +67,15 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
         newName = sObjectMgr->GeneratePetName(entry);
 
     Pet* pet = player->CreateTamedPetFrom(entry, SPELL_TAME_BEAST);
-    if (!pet) {
+    if (!pet)
+    {
         return;
     }
 
     float px, py, pz;
     player->GetClosePoint(px, py, pz, pet->GetObjectSize(), PET_FOLLOW_DIST, pet->GetFollowAngle());
-    if (!pet->IsPositionValid()) {
+    if (!pet->IsPositionValid())
+    {
         sLog->outError("Pet (entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
         delete pet;
         return;
@@ -100,5 +108,13 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
 
     pet->SavePetToDB(PET_SAVE_AS_CURRENT, false);
     player->PetSpellInitialize();
+}
+
+void FirstLogin::LearnPetSpells(Player* player)
+{
+    for (uint32 i = 0; i < _hunterPetSpells.size(); ++i)
+    {
+        player->learnSpell(_hunterPetSpells[i]);
+    }
 }
 

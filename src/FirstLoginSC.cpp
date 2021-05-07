@@ -27,6 +27,7 @@ static bool FLoginAnnounce;
 static uint32 FLoginStable;
 static bool FLoginPet;
 static uint32 FLoginPetName;
+static bool FLoginPetSpells;
 static uint32 FLoginBank;
 static uint32 FLoginBagID;
 static bool FLoginDualSpec;
@@ -35,7 +36,7 @@ static bool FLoginDualSpec;
  * TODO:
  *  - Rework name generation
  *  - Fill sql files for name generation
- *  - Add learn all spells option (maybe rather on char creation?)
+ *  - Add learn all spells option
  */
 
 class FirstLoginBeforeConfigLoad : public WorldScript {
@@ -48,6 +49,7 @@ public:
         FLoginStable = sConfigMgr->GetIntDefault("FirstLogin.StableSlots", 0);
         FLoginPet = sConfigMgr->GetBoolDefault("FirstLogin.Pet", 0);
         FLoginPetName = sConfigMgr->GetIntDefault("FirstLogin.RandPetName", 0);
+        FLoginPetSpells = sConfigMgr->GetBoolDefault("FirstLogin.LearnPetSpells", 0);
         FLoginBank = sConfigMgr->GetIntDefault("FirstLogin.BankSlots", 0);
         FLoginBagID = sConfigMgr->GetIntDefault("FirstLogin.BagID", 0);
         FLoginDualSpec = sConfigMgr->GetBoolDefault("FirstLogin.DualSpec", 0);
@@ -59,17 +61,25 @@ public:
     FirstLoginScripts() : PlayerScript("FirstLoginScripts") { }
 
     void OnFirstLogin(Player* player) override {
-        if (FLoginEnable) {
+        if (FLoginEnable)
+        {
             if (FLoginAnnounce)
-                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00First-Login-Scripts |rmodule.");
+                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00FirstLogin-AIO |rmodule.");
 
-            if (FLoginStable > 0 && player->getClass() == CLASS_HUNTER && player->m_stableSlots < MAX_PET_STABLES)
-                player->m_stableSlots = FLoginStable > 4 ? 4 : FLoginStable;
+            if (player->getClass() == CLASS_HUNTER)
+            {
+                if (FLoginStable > 0 && player->m_stableSlots < MAX_PET_STABLES)
+                    player->m_stableSlots = FLoginStable > 4 ? 4 : FLoginStable;
 
-            if (FLoginPet && player->getClass() == CLASS_HUNTER)
-                sFirstLogin->CreateRandomPet(player, FLoginPetName);
+                if (FLoginPet)
+                    sFirstLogin->CreateRandomPet(player, FLoginPetName);
 
-            if (FLoginBank > 0) {
+                if (FLoginPetSpells)
+                    sFirstLogin->LearnPetSpells(player);
+            }
+
+            if (FLoginBank > 0)
+            {
                 uint32 slots = FLoginBank > 7 ? 7 : FLoginBank;
                 player->SetBankBagSlotCount(slots);
                 if (FLoginBagID > 0)
@@ -77,7 +87,8 @@ public:
                         player->EquipNewItem(i, FLoginBagID, true);
             }
 
-            if (FLoginDualSpec) {
+            if (FLoginDualSpec)
+            {
                 player->CastSpell(player, 63680, true, nullptr, nullptr, player->GetGUID());
                 player->CastSpell(player, 63624, true, nullptr, nullptr, player->GetGUID());
             }

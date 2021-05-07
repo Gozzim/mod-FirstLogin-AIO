@@ -1,7 +1,7 @@
 [worldserver]
 
 ############################################
-#    First Login Scripts configuration     #
+#    First Login AIO configuration         #
 ############################################
 
 ###################################################################################################
@@ -40,6 +40,13 @@ FirstLogin.Pet = 0
 #                2 (generate name out of 2 halves from db)
 
 FirstLogin.RandPetName = 0
+
+#   FirstLogin.LearnPetSpells
+#       Description: New players of class Hunter learn spells to manage their pets
+#       Default: 0 (disabled)
+#                1 (enabled)
+
+FirstLogin.LearnPetSpells = 0
 
 #   FirstLogin.BankSlots
 #       Description: Number of unlocked BankSlots for new players (0-7)
