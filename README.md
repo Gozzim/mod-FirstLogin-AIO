@@ -1,7 +1,7 @@
 # This is a module for  ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
 ## Additional First Login Features
 [![core-build](https://github.com/Gozzim/mod-first-login/actions/workflows/core-build.yml/badge.svg)](https://github.com/Gozzim/mod-first-login)
-[![CodeFactor](https://www.codefactor.io/repository/github/gozzim/mod-first-login/badge?s=342e4cd90c9ff0c396e11f2e63a9770e591d7227)](https://www.codefactor.io/repository/github/gozzim/mod-first-login)
+[![CodeFactor](https://www.codefactor.io/repository/github/gozzim/mod-firstlogin-aio/badge)](https://www.codefactor.io/repository/github/gozzim/mod-firstlogin-aio)
 
 ## Description
 Module to enable various features for new players

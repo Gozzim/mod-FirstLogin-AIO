@@ -60,7 +60,6 @@ public:
 
     void OnFirstLogin(Player* player) override {
         if (FLoginEnable) {
-
             if (FLoginAnnounce)
                 ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00First-Login-Scripts |rmodule.");
 

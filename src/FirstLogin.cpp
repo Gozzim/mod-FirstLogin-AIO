@@ -100,6 +100,5 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
 
     pet->SavePetToDB(PET_SAVE_AS_CURRENT, false);
     player->PetSpellInitialize();
-
 }
 
