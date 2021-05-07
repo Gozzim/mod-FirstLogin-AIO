@@ -17,13 +17,19 @@
 
 #include "FirstLogin.h"
 
+enum HunterVars
+{
+    SPELL_TAME_BEAST    = 13481,
+    PET_MAX_HAPPINESS   = 1048000
+};
+
+static uint32 const hunterSpells[] = {883, 982, 1002, 1462, 2641, 6991, 13481, 48990};
+
 FirstLogin* FirstLogin::instance()
 {
     static FirstLogin instance;
     return &instance;
 }
-
-constexpr uint32 SPELL_TAMEPET = 13481;
 
 // Very basic implementation for testing purposes
 std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen) {
@@ -54,7 +60,7 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
     if (petNameConf == 2)
         newName = sObjectMgr->GeneratePetName(entry);
 
-    Pet* pet = player->CreateTamedPetFrom(entry, SPELL_TAMEPET);
+    Pet* pet = player->CreateTamedPetFrom(entry, SPELL_TAME_BEAST);
     if (!pet) {
         return;
     }
@@ -72,7 +78,7 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf) {
     pet->SetUInt32Value(UNIT_FIELD_FACTIONTEMPLATE, player->getFaction());
     pet->SetUInt32Value(UNIT_FIELD_LEVEL, player->getLevel());
 
-    pet->SetPower(POWER_HAPPINESS, 1048000);
+    pet->SetPower(POWER_HAPPINESS, PET_MAX_HAPPINESS);
     pet->SetReactState(REACT_DEFENSIVE);
 
     // Add to world
