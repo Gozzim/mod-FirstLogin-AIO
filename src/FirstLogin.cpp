@@ -20,6 +20,7 @@
 enum HunterVars
 {
     SPELL_TAME_BEAST    = 13481,
+    SPELL_MEND_PET      = 136,
     PET_MAX_HAPPINESS   = 1048000
 };
 
@@ -112,9 +113,17 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
 
 void FirstLogin::LearnPetSpells(Player* player)
 {
+    uint32 mendPet = sSpellMgr->GetNextSpellInChain(SPELL_MEND_PET);
+
     for (uint32 i = 0; i < _hunterPetSpells.size(); ++i)
     {
         player->learnSpell(_hunterPetSpells[i]);
+    }
+
+    while (mendPet && sSpellMgr->GetSpellInfo(mendPet)->BaseLevel <= player->getLevel())
+    {
+        player->learnSpell(mendPet);
+        mendPet = sSpellMgr->GetNextSpellInChain(mendPet);
     }
 }
 
