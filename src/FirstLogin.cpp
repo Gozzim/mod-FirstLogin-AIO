@@ -113,17 +113,17 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
 
 void FirstLogin::LearnPetSpells(Player* player)
 {
-    uint32 mendPet = sSpellMgr->GetNextSpellInChain(SPELL_MEND_PET);
-
     for (uint32 i = 0; i < _hunterPetSpells.size(); ++i)
     {
-        player->learnSpell(_hunterPetSpells[i]);
+        LearnSpellAndRanksForLevel(_hunterPetSpells[i], player);
     }
+}
 
-    while (mendPet && sSpellMgr->GetSpellInfo(mendPet)->BaseLevel <= player->getLevel())
-    {
-        player->learnSpell(mendPet);
-        mendPet = sSpellMgr->GetNextSpellInChain(mendPet);
-    }
+void FirstLogin::LearnSpellAndRanksForLevel(uint32 spellId, Player* player)
+{
+    player->learnSpell(spellId);
+    uint32 next = sSpellMgr->GetNextSpellInChain(spellId);
+    if (next && sSpellMgr->GetSpellInfo(next)->BaseLevel <= player->getLevel())
+        LearnSpellAndRanksForLevel(next, player);
 }
 
