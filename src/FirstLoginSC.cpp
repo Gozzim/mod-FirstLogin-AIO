@@ -80,10 +80,10 @@ public:
                     sFirstLogin->LearnPetSpells(player);
             }
 
-            if (StartingMinion > 0 && player->getClass() == CLASS_WARLOCK)
+            if (FLogin > 0 && player->getClass() == CLASS_WARLOCK)
             {
-                sFirstLogin->LearnWarlockSpells(player, StartingMinion);
-                sFirstLogin->SummonWarlockMinion(player, StartingMinion);
+                sFirstLogin->LearnWarlockSpells(player, FLogin);
+                sFirstLogin->SummonWarlockMinion(player, FLogin);
             }
 
             if (FLoginBank > 0)
