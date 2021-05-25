@@ -28,6 +28,7 @@ static uint32 FLoginStable;
 static bool FLoginPet;
 static uint32 FLoginPetName;
 static bool FLoginPetSpells;
+static uint32 FLoginMinion;
 static uint32 FLoginBank;
 static uint32 FLoginBagID;
 static bool FLoginDualSpec;
@@ -50,6 +51,7 @@ public:
         FLoginPet = sConfigMgr->GetBoolDefault("FirstLogin.Pet", 0);
         FLoginPetName = sConfigMgr->GetIntDefault("FirstLogin.RandPetName", 0);
         FLoginPetSpells = sConfigMgr->GetBoolDefault("FirstLogin.LearnPetSpells", 0);
+        FLoginMinion = sConfigMgr->GetIntDefault("FirstLogin.WarlockMinion", 0);
         FLoginBank = sConfigMgr->GetIntDefault("FirstLogin.BankSlots", 0);
         FLoginBagID = sConfigMgr->GetIntDefault("FirstLogin.BagID", 0);
         FLoginDualSpec = sConfigMgr->GetBoolDefault("FirstLogin.DualSpec", 0);
@@ -76,6 +78,12 @@ public:
 
                 if (FLoginPetSpells)
                     sFirstLogin->LearnPetSpells(player);
+            }
+
+            if (StartingMinion > 0 && player->getClass() == CLASS_WARLOCK)
+            {
+                sFirstLogin->LearnWarlockSpells(player, StartingMinion);
+                sFirstLogin->SummonWarlockMinion(player, StartingMinion);
             }
 
             if (FLoginBank > 0)

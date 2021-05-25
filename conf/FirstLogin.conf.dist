@@ -48,6 +48,25 @@ FirstLogin.RandPetName = 0
 
 FirstLogin.LearnPetSpells = 0
 
+#   FirstLogin.WarlockMinion
+#       Description: Specifies the minions warlocks can start with and teaches them the according spell
+#                    Note that minion spells also have a minimum level and might not have any spells on low levels
+#                    This is a bitmask value of the following options
+#
+#                    1 - Imp
+#                    2 - Voidwalker
+#                    4 - Succubus
+#                    8 - Felhunter
+#                   16 - Felguard (only possible starting minion, does not teach spell)
+#                   32 - Drain Soul (teaches spell, required for Soul Shards)
+#
+#       Example:    41 - Imp, Felhunter, Drain Soul
+#                    0 - disabled
+#
+#       Default:    0
+
+StartingPet.WarlockMinion = 0
+
 #   FirstLogin.BankSlots
 #       Description: Number of unlocked BankSlots for new players (0-7)
 #       Default: 0 (disabled)

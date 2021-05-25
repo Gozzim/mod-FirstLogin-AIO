@@ -17,6 +17,8 @@ public:
     void CreateRandomPet(Player* player, uint32 petNameConf);
     std::string RandName(uint16 minLen, uint16 maxLen);
     void LearnPetSpells(Player* player);
+    void SummonWarlockMinion(Player* player, uint32 minionMask);
+    void LearnWarlockSpells(Player* player, uint32 minionMask);
     void LearnSpellAndRanksForLevel(uint32 spellId, Player* player);
 
 private:
@@ -29,6 +31,7 @@ private:
                                3246, 3653, 4824, 4397, 2505, 25482, 18884, 18878, 22255, 23219, 28086, 28085, 22182, 20198, 20197, 18283, 5056, 5756, 5307, 5708, 26806, 8336, 26446, 21123, 20673, 20749, 28477, 20330, 1817, 1508, 2958, 10221, 19458, 8211, 118, 29889, 2753, 521, 24475, 24516,
                                24517, 24677, 17669};
     std::vector<uint32> const _hunterPetSpells = {136, 883, 982, 1002, 1462, 1515, 2641, 6991};
+    std::vector<uint32> const _warlockSpells = {688, 697, 712, 691, 30146, 1120};
 };
 
 #define sFirstLogin FirstLogin::instance()

@@ -13,7 +13,8 @@ Module to enable various features for new players
 - Set number of stable slots for hunters to start with
 - Enable hunters starting with a random pet
     - Different options for random name generation for hunter starting pets
-- Enable hunters starting with all their pet spells
+- Enable hunters starting with all their pet spell
+- Enable warlocks starting with selectable minions and according spells
 - Set number of bank slots for new players
     - Different options for bags within those bank bag slots
 - Enable players starting with dual spec
