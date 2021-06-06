@@ -65,7 +65,7 @@ FirstLogin.LearnPetSpells = 0
 #
 #       Default:    0
 
-StartingPet.WarlockMinion = 0
+FirstLogin.WarlockMinion = 0
 
 #   FirstLogin.BankSlots
 #       Description: Number of unlocked BankSlots for new players (0-7)

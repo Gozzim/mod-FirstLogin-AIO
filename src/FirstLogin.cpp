@@ -36,6 +36,7 @@ std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen)
     uint16 const len = urand(minLen, maxLen);
     std::ostringstream newName;
     std::string nextChar;
+
     for (uint8 i = 1; i < len + 1; i++)
     {
         if (i == 1)
@@ -52,6 +53,7 @@ std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen)
         }
         newName << nextChar;
     }
+
     return newName.str();
 }
 
@@ -63,9 +65,14 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
 
     // Generate new name for pet
     if (petNameConf == 1)
+    {
         newName = RandName(4, 8);
+    }
+
     if (petNameConf == 2)
+    {
         newName = sObjectMgr->GeneratePetName(entry);
+    }
 
     Pet* pet = player->CreateTamedPetFrom(entry, SPELL_TAME_BEAST);
     if (!pet)
@@ -101,7 +108,9 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
 
     // Set pet name
     if (!newName.empty())
+    {
         pet->SetName(newName);
+    }
 
     // Initialize Pet Stats
     pet->InitTalentForLevel();
@@ -140,7 +149,9 @@ void FirstLogin::SummonWarlockMinion(Player* player, uint32 minionMask)
     for (uint32 i = 0; i < 5; ++i)
     {
         if (minionMask & (1 << i))
+        {
             warlockMinions.push_back(_warlockSpells[i]);
+        }
     }
 
     if (warlockMinions.empty())
@@ -155,6 +166,8 @@ void FirstLogin::LearnSpellAndRanksForLevel(uint32 spellId, Player* player)
     player->learnSpell(spellId);
     uint32 next = sSpellMgr->GetNextSpellInChain(spellId);
     if (next && sSpellMgr->GetSpellInfo(next)->BaseLevel <= player->getLevel())
+    {
         LearnSpellAndRanksForLevel(next, player);
+    }
 }
 

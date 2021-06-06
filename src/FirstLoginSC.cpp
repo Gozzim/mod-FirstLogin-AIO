@@ -40,11 +40,13 @@ static bool FLoginDualSpec;
  *  - Add learn all spells option
  */
 
-class FirstLoginBeforeConfigLoad : public WorldScript {
+class FirstLoginBeforeConfigLoad : public WorldScript
+{
 public:
     FirstLoginBeforeConfigLoad() : WorldScript("FirstLoginBeforeConfigLoad") { }
 
-    void OnBeforeConfigLoad(bool /*reload*/) override {
+    void OnBeforeConfigLoad(bool /*reload*/) override
+    {
         FLoginEnable = sConfigMgr->GetBoolDefault("FirstLogin.Enable", 1);
         FLoginAnnounce = sConfigMgr->GetBoolDefault("FirstLogin.Announce", 1);
         FLoginStable = sConfigMgr->GetIntDefault("FirstLogin.StableSlots", 0);
@@ -58,26 +60,36 @@ public:
     }
 };
 
-class FirstLoginScripts : public PlayerScript {
+class FirstLoginScripts : public PlayerScript
+{
 public:
     FirstLoginScripts() : PlayerScript("FirstLoginScripts") { }
 
-    void OnFirstLogin(Player* player) override {
+    void OnFirstLogin(Player* player) override
+    {
         if (FLoginEnable)
         {
             if (FLoginAnnounce)
+            {
                 ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00FirstLogin-AIO |rmodule.");
+            }
 
             if (player->getClass() == CLASS_HUNTER)
             {
                 if (FLoginStable > 0 && player->m_stableSlots < MAX_PET_STABLES)
+                {
                     player->m_stableSlots = FLoginStable > 4 ? 4 : FLoginStable;
+                }
 
                 if (FLoginPet)
+                {
                     sFirstLogin->CreateRandomPet(player, FLoginPetName);
+                }
 
                 if (FLoginPetSpells)
+                {
                     sFirstLogin->LearnPetSpells(player);
+                }
             }
 
             if (FLoginMinion > 0 && player->getClass() == CLASS_WARLOCK)
@@ -91,8 +103,12 @@ public:
                 uint32 slots = FLoginBank > 7 ? 7 : FLoginBank;
                 player->SetBankBagSlotCount(slots);
                 if (FLoginBagID > 0)
+                {
                     for (uint16 i = BANK_SLOT_BAG_START; i < (BANK_SLOT_BAG_START + slots); i++)
+                    {
                         player->EquipNewItem(i, FLoginBagID, true);
+                    }
+                }
             }
 
             if (FLoginDualSpec)
@@ -104,7 +120,8 @@ public:
     }
 };
 
-void AddFirstLoginScripts() {
+void AddFirstLoginScripts()
+{
     new FirstLoginBeforeConfigLoad();
     new FirstLoginScripts();
 }
