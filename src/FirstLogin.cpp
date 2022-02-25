@@ -84,14 +84,14 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
     player->GetClosePoint(px, py, pz, pet->GetObjectSize(), PET_FOLLOW_DIST, pet->GetFollowAngle());
     if (!pet->IsPositionValid())
     {
-        sLog->outError("Pet (entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
+        LOG_ERROR("module", "Pet (entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
         delete pet;
         return;
     }
     pet->Relocate(px, py, pz, player->GetOrientation());
 
     pet->SetGuidValue(UNIT_FIELD_CREATEDBY, player->GetGUID());
-    pet->SetUInt32Value(UNIT_FIELD_FACTIONTEMPLATE, player->getFaction());
+    pet->SetUInt32Value(UNIT_FIELD_FACTIONTEMPLATE, player->GetFaction());
     pet->SetUInt32Value(UNIT_FIELD_LEVEL, player->getLevel());
 
     pet->SetPower(POWER_HAPPINESS, PET_MAX_HAPPINESS);
@@ -116,7 +116,7 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
     pet->InitTalentForLevel();
     pet->InitStatsForLevel(player->getLevel());
 
-    pet->SavePetToDB(PET_SAVE_AS_CURRENT, false);
+    pet->SavePetToDB(PET_SAVE_AS_CURRENT);
     player->PetSpellInitialize();
 }
 
