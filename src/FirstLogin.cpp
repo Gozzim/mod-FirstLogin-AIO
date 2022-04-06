@@ -84,7 +84,7 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
     player->GetClosePoint(px, py, pz, pet->GetObjectSize(), PET_FOLLOW_DIST, pet->GetFollowAngle());
     if (!pet->IsPositionValid())
     {
-        sLog->outError("Pet (entry %d) not loaded. Suggested coordinates isn't valid (X: %f Y: %f)", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
+        LOG_DEBUG("module", "FirstLogin::CreateRandomPet - Pet (entry {}) not loaded. Suggested coordinates isn't valid (X: {} Y: {})", pet->GetEntry(), pet->GetPositionX(), pet->GetPositionY());
         delete pet;
         return;
     }
