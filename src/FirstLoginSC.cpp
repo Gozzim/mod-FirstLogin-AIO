@@ -47,16 +47,16 @@ public:
 
     void OnBeforeConfigLoad(bool /*reload*/) override
     {
-        FLoginEnable = sConfigMgr->GetBoolDefault("FirstLogin.Enable", 1);
-        FLoginAnnounce = sConfigMgr->GetBoolDefault("FirstLogin.Announce", 1);
-        FLoginStable = sConfigMgr->GetIntDefault("FirstLogin.StableSlots", 0);
-        FLoginPet = sConfigMgr->GetBoolDefault("FirstLogin.Pet", 0);
-        FLoginPetName = sConfigMgr->GetIntDefault("FirstLogin.RandPetName", 0);
-        FLoginPetSpells = sConfigMgr->GetBoolDefault("FirstLogin.LearnPetSpells", 0);
-        FLoginMinion = sConfigMgr->GetIntDefault("FirstLogin.WarlockMinion", 0);
-        FLoginBank = sConfigMgr->GetIntDefault("FirstLogin.BankSlots", 0);
-        FLoginBagID = sConfigMgr->GetIntDefault("FirstLogin.BagID", 0);
-        FLoginDualSpec = sConfigMgr->GetBoolDefault("FirstLogin.DualSpec", 0);
+        FLoginEnable = sConfigMgr->GetOption<bool>("FirstLogin.Enable", 1);
+        FLoginAnnounce = sConfigMgr->GetOption<bool>("FirstLogin.Announce", 1);
+        FLoginStable = sConfigMgr->GetOption<int>("FirstLogin.StableSlots", 0);
+        FLoginPet = sConfigMgr->GetOption<bool>("FirstLogin.Pet", 0);
+        FLoginPetName = sConfigMgr->GetOption<int>("FirstLogin.RandPetName", 0);
+        FLoginPetSpells = sConfigMgr->GetOption<bool>("FirstLogin.LearnPetSpells", 0);
+        FLoginMinion = sConfigMgr->GetOption<int>("FirstLogin.WarlockMinion", 0);
+        FLoginBank = sConfigMgr->GetOption<int>("FirstLogin.BankSlots", 0);
+        FLoginBagID = sConfigMgr->GetOption<int>("FirstLogin.BagID", 0);
+        FLoginDualSpec = sConfigMgr->GetOption<bool>("FirstLogin.DualSpec", 0);
     }
 };
 
@@ -76,9 +76,9 @@ public:
 
             if (player->getClass() == CLASS_HUNTER)
             {
-                if (FLoginStable > 0 && player->m_stableSlots < MAX_PET_STABLES)
+                if (FLoginStable > 0 && player->GetPetStable()->MaxStabledPets < MAX_PET_STABLES)
                 {
-                    player->m_stableSlots = FLoginStable > 4 ? 4 : FLoginStable;
+                    player->GetPetStable()->MaxStabledPets = FLoginStable > 4 ? 4 : FLoginStable;
                 }
 
                 if (FLoginPet)
