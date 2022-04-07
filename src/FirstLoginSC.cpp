@@ -76,9 +76,13 @@ public:
 
             if (player->getClass() == CLASS_HUNTER)
             {
-                if (FLoginStable > 0 && player->GetPetStable()->MaxStabledPets < MAX_PET_STABLES)
+                if (FLoginStable > 0)
                 {
-                    player->GetPetStable()->MaxStabledPets = FLoginStable > 4 ? 4 : FLoginStable;
+                    PetStable& petStable = player->GetOrInitPetStable();
+                    if (petStable.MaxStabledPets < MAX_PET_STABLES)
+                    {
+                        petStable.MaxStabledPets = FLoginStable > MAX_PET_STABLES ? MAX_PET_STABLES : FLoginStable;
+                    }
                 }
 
                 if (FLoginPet)

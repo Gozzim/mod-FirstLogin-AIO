@@ -42,12 +42,10 @@ std::string FirstLogin::RandName(uint16 minLen, uint16 maxLen)
         if (i == 1)
         {
             nextChar = toupper(_consonants[urand(0, _consonants.length() - 1)]);
-        }
-        else if (i % 2 == 0 || i % 5 == 0)
+        } else if (i % 2 == 0 || i % 5 == 0)
         {
             nextChar = _vowels[urand(0, _vowels.length() - 1)];
-        }
-        else
+        } else
         {
             nextChar = _consonants[urand(0, _consonants.length() - 1)];
         }
@@ -72,6 +70,19 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
     if (petNameConf == 2)
     {
         newName = sObjectMgr->GeneratePetName(entry);
+    }
+
+    // Prevent crashed due to bad configuration
+    CreatureTemplate const* creatureTemplate = sObjectMgr->GetCreatureTemplate(entry);
+    if (!creatureTemplate->family)
+    {
+        LOG_ERROR("module", "FirstLogin::CreateRandomPet - Tried to create nonTamablePet {}", creatureTemplate->Entry);
+        return;
+    }
+
+    if (player->IsExistPet())
+    {
+        return;
     }
 
     Pet* pet = player->CreateTamedPetFrom(entry, SPELL_TAME_BEAST);
@@ -101,7 +112,6 @@ void FirstLogin::CreateRandomPet(Player* player, uint32 petNameConf)
     pet->GetMap()->AddToMap(pet->ToCreature());
 
     pet->SetFullHealth();
-    pet->GetCharmInfo()->SetPetNumber(sObjectMgr->GeneratePetNumber(), true);
 
     // Caster has pet now
     player->SetMinion(pet, true);
@@ -170,4 +180,3 @@ void FirstLogin::LearnSpellAndRanksForLevel(uint32 spellId, Player* player)
         LearnSpellAndRanksForLevel(next, player);
     }
 }
-
